@@ -9,6 +9,6 @@ steps:
   - --runtime=python37
   - --trigger-http
   - --memory=256MB
-  - --timeout=99
+  - --timeout=42
   - --set-env-vars=name=$(gcloud beta secrets versions access --secret=andrew-demo latest)
   - --allow-unauthenticated
