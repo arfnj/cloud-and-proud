@@ -4,6 +4,7 @@ steps:
   - functions
   - deploy
   - cloud-and-proud
+  - --target=hello
   - --source=.
   - --runtime=python37
   - --trigger-http
