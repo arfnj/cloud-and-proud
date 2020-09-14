@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - functions
+  - deploy
+  - cloud-and-proud
+  - --source=.
+  - --runtime=python37
+  - --trigger-http
+  - --memory=256MB
+  - --timeout=540
+  - --set-env-vars=name=$(gcloud beta secrets versions access --secret=andrew-demo latest)
+  - --allow-unauthenticated
