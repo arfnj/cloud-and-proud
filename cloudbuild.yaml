@@ -1,14 +1,19 @@
 steps:
+steps:
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: 'bash'
+  args: [ '-c', "gcloud secrets versions access latest --secret=andrew-demo --format='get(payload.data)' | tr '_-' '/+' | base64 -d > env_vars.yaml" ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - functions
-  - deploy
-  - cloud-and-proud
-  - --source=.
-  - --runtime=python37
-  - --trigger-http
-  - --memory=256MB
-  - --timeout=42
-  - --set-env-vars=name=$(gcloud beta secrets versions access --secret=andrew-demo latest)
-  - --allow-unauthenticated
-  - --entry-point=hello
+  args: [
+    'functions',
+    'deploy',
+    'cloud-and-proud',
+    '--source=.',
+    '--runtime=python37',
+    '--trigger-http',
+    '--memory=256MB',
+    '--timeout=42',
+    '--env-vars-file=env_vars.yaml',
+    '--allow-unauthenticated',
+    '--entry-point=hello'
+  ]
