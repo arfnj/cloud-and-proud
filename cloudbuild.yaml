@@ -3,7 +3,7 @@ steps:
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: 'bash'
   args: [ '-c', "gcloud secrets versions access latest --secret=andrew-demo --format='get(payload.data)' | tr '_-' '/+' | base64 -d > env_vars.yaml" ]
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/cloud-builders/gcloud@sha256:4ea77d19d7336d5a8dc4ae0e609d7f5b45fca067c34b70d7ed6740af229392c6'
   args: [
     'functions',
     'deploy',
